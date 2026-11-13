@@ -5,9 +5,9 @@ LDLIBS  += -ldl
 
 BUILD   := build
 LIBS    := $(BUILD)/libaes_ttable.so $(BUILD)/libaes_ni.so
-BINS    := $(BUILD)/test_aes $(BUILD)/bench
+BINS    := $(BUILD)/test_aes $(BUILD)/bench $(BUILD)/victim
 
-.PHONY: all test bench clean
+.PHONY: all test clean
 
 all: $(LIBS) $(BINS)
 
@@ -29,11 +29,11 @@ $(BUILD)/test_aes: tests/test_aes.c src/aes_loader.c include/aes_loader.h | $(BU
 $(BUILD)/bench: tests/bench.c src/aes_loader.c include/aes_loader.h | $(BUILD)
 	$(CC) $(CFLAGS) -o $@ tests/bench.c src/aes_loader.c $(LDLIBS)
 
+$(BUILD)/victim: src/victim.c src/aes_loader.c include/aes_loader.h include/protocol.h | $(BUILD)
+	$(CC) $(CFLAGS) -o $@ src/victim.c src/aes_loader.c $(LDLIBS)
+
 test: $(LIBS) $(BUILD)/test_aes
 	$(BUILD)/test_aes $(BUILD)/libaes_ni.so $(BUILD)/libaes_ttable.so
-
-bench: $(LIBS) $(BUILD)/bench
-	$(BUILD)/bench $(BUILD)/libaes_ni.so $(BUILD)/libaes_ttable.so
 
 clean:
 	rm -rf $(BUILD)

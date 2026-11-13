@@ -8,7 +8,7 @@ Work in progress.
 ## Status
 
 - [x] T-table AES-128 as a shared library, tested against FIPS-197
-- [ ] AES-NI baseline and benchmark
+- [x] AES-NI baseline and benchmark
 - [ ] Victim encryption service
 - [ ] Flush+Reload primitives
 - [ ] Key recovery
@@ -22,4 +22,5 @@ Needs Linux on x86-64, gcc, make and Python 3.
 ```
 make
 make test
+make bench
 ```

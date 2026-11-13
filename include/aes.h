@@ -8,6 +8,7 @@
 // the victim) can run on any of them.
 //
 //   libaes_ttable.so   T-table AES (vulnerable to cache attacks)
+//   libaes_ni.so       AES-NI instructions, no tables at all
 
 #define AES_BLOCK_SIZE 16
 #define AES128_KEY_SIZE 16
